@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "disableinsecurechattoast",
+  "version": "${version}",
+
+  "name": "Buffed Sculk Catalysts",
+  "description": "Return 20 XP drop from Sculk Catalysts",
+  "authors": [
+    "NikitaCartes"
+  ],
+  "contact": {
+    "homepage": "https://github.com/NikitaCartes/DisableInsecureChatToast",
+    "sources": "https://github.com/NikitaCartes/DisableInsecureChatToast"
+  },
+
+  "license": "CC0-1.0",
+
+  "environment": "*",
+  "mixins": [
+    "disableinsecurechattoast.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.6",
+    "minecraft": "~1.19"
+  }
+}
