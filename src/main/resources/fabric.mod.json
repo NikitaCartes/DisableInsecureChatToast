@@ -3,8 +3,7 @@
   "id": "disableinsecurechattoast",
   "version": "${version}",
 
-  "name": "Buffed Sculk Catalysts",
-  "description": "Return 20 XP drop from Sculk Catalysts",
+  "name": "Disable Insecure Chat Toast",
   "authors": [
     "NikitaCartes"
   ],
