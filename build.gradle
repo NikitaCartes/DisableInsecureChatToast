@@ -3,7 +3,7 @@ plugins {
 }
 
 
-archivesBaseName = "${project.mod_name}-mc${project.minecraft_version}"
+archivesBaseName = "${project.mod_name}"
 version = "${project.mod_version}"
 
 sourceCompatibility = JavaVersion.VERSION_17

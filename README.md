@@ -1,6 +1,7 @@
 # Disable Insecure Chat Toast
 
-This mod deletes warning toast about connecting to a server without enforce secure chat.
+This mod deletes warning toast about connecting to a server without enforce secure chat.  
+Can be installed on both client and server.
 
 ![Warning toast no more](Toast.png)
 

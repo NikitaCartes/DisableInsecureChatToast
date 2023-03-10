@@ -2,7 +2,6 @@
   "schemaVersion": 1,
   "id": "disableinsecurechattoast",
   "version": "${version}",
-
   "name": "Disable Insecure Chat Toast",
   "authors": [
     "NikitaCartes"
@@ -11,14 +10,11 @@
     "homepage": "https://github.com/NikitaCartes/DisableInsecureChatToast",
     "sources": "https://github.com/NikitaCartes/DisableInsecureChatToast"
   },
-
   "license": "CC0-1.0",
-
-  "environment": "client",
+  "environment": "*",
   "mixins": [
     "disableinsecurechattoast.mixins.json"
   ],
-
   "depends": {
     "fabricloader": ">=0.14.6",
     "minecraft": "~1.19"
