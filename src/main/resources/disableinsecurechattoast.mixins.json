@@ -4,7 +4,7 @@
   "package": "xyz.nikitacartes.disableinsecurechattoast.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ClientPlayNetworkHandlerMixin"
+    "ClientPacketListenerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

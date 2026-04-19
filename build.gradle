@@ -1,25 +1,25 @@
 plugins {
-    id "fabric-loom" version "1.6-SNAPSHOT"
+    id "net.fabricmc.fabric-loom" version "1.16-SNAPSHOT"
+    id("me.modmuss50.mod-publish-plugin") version "0.8.4"
 }
 
-
-archivesBaseName = "${project.mod_name}-mc${project.minecraft_version}"
+base.archivesName = "${project.mod_name}-mc${project.minecraft_version}"
 version = "${project.mod_version}"
 
-sourceCompatibility = JavaVersion.VERSION_21
-targetCompatibility = JavaVersion.VERSION_21
+java {
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+}
 
 dependencies {
     // Fabric
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 }
 
 tasks.withType(JavaCompile).configureEach {
     it.options.encoding = "UTF-8"
-    it.options.release = 21
+    it.options.release = 25
 }
 
 java {
@@ -37,6 +37,37 @@ processResources {
 
     filesMatching("fabric.mod.json") {
         expand(["id": project.mod_id, "name": project.mod_name, "version": project.version])
+    }
+}
+
+publishMods {
+    def modrinthToken = System.getenv("MODRINTH_TOKEN") ?: ""
+    def curseforgeToken = System.getenv("CURSEFORGE_TOKEN") ?: ""
+
+    file = tasks.jar.archiveFile
+    dryRun = modrinthToken.isEmpty() || curseforgeToken.isEmpty()
+
+    displayName = "[26.1] ${project.version}"
+    version = "${project.version}"
+
+    changelog = "26.1 Update"
+    type = STABLE
+    modLoaders.add("fabric")
+
+    def targets = ["26.1"]
+
+    modrinth {
+        projectId = "i090SePT"
+        accessToken = modrinthToken
+
+        targets.forEach(minecraftVersions::add)
+    }
+
+    curseforge {
+        projectId = "648547"
+        accessToken = curseforgeToken
+
+        targets.forEach(minecraftVersions::add)
     }
 }
 
