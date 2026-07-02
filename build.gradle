@@ -43,9 +43,10 @@ processResources {
 publishMods {
     def modrinthToken = System.getenv("MODRINTH_TOKEN") ?: ""
     def curseforgeToken = System.getenv("CURSEFORGE_TOKEN") ?: ""
+    def githubToken = System.getenv("GITHUB_TOKEN") ?: ""
 
     file = tasks.jar.archiveFile
-    dryRun = modrinthToken.isEmpty() || curseforgeToken.isEmpty()
+    dryRun = modrinthToken.isEmpty() || curseforgeToken.isEmpty() || githubToken.isEmpty()
 
     displayName = "[26.1] ${project.version}"
     version = "${project.version}"
@@ -59,15 +60,29 @@ publishMods {
     modrinth {
         projectId = "i090SePT"
         accessToken = modrinthToken
-
+        changelog = rootProject.file("RELEASE_NOTE.md").readText()
         targets.forEach(minecraftVersions::add)
     }
 
     curseforge {
         projectId = "648547"
         accessToken = curseforgeToken
-
+        changelog = rootProject.file("RELEASE_NOTE.md").readText()
         targets.forEach(minecraftVersions::add)
     }
+
+    github {
+        accessToken = githubToken
+        repository = "NikitaCartes/DisableInsecureChatToast"
+        commitish = "master"
+        changelog = rootProject.file("RELEASE_NOTE.md").readText()
+        tagName = "${project.version}"
+    }
+}
+
+// Local publication for AutoTests: single-version project, `build` already puts the jar in build/libs.
+tasks.register("collectJars") {
+    group = "build"
+    dependsOn "build"
 }
 
