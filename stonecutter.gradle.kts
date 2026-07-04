@@ -13,7 +13,6 @@ stonecutter.tasks {
     order("publishMods")
 }
 
-// One GitHub release for both loader jars; each node attaches its jar via `parent`.
 publishMods {
     val githubToken = System.getenv("GITHUB_TOKEN") ?: ""
     val modVersion = property("mod_version").toString()
